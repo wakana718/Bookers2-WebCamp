@@ -1,0 +1,9 @@
+<h1>Editing Book</h1>
+<%= form_with model:@book, local:true do |f| %>
+ <%= f.text_field :Title %>
+ <%= f.text_field :Opinion %>
+ <%= f.submit "Update Book", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+<% end %>
+
+<%= link_to "Show", user_book_path(book.id) %>
+<%= link_to "Back", user_book_index_path %>

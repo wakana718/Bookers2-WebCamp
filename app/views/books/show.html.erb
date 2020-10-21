@@ -1,7 +1,6 @@
 <h1>User info</h1>
 <div class="profile-container">
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  <% if @user.id == current_user.id %>
     <h3><%= @user.name %></h3>
     <h3><%= @user.introduction %></h3>
    <% if @user.id == current_user.id %>
@@ -36,20 +35,42 @@
  <% end %>
 
 <h1>Book detail</h1>
+<% @profile_images.zip(@books).each do |user, book| %>
+ <% if @user.id == current_user.id %>
 　<table>
+　  <thead>
+　    <th colspan="1"></th>
+　    <th colspan="1"></th>
+　    <th colspan="1"></th>
+　    <th colspan="1"></th>
+　    <th colspan="1"></th>
+　  </thead>
+　  <tbody>
+　    <tr>
+       <td><%= user.profile_image %></td>
+       <td><%= link_to user.name, user_path(user.id) %></td>
+       <td><%= book.title %></td>
+       <td><%= book.body %></td>
+       <td><%= link_to "Edit", edit_user_book %></td>
+       <td><%= link_to "Destroy", user_book_index, method: :delete %></td>
+　    </tr>
+　  </tbody>
+　</table>
+　<% else %>
+　 <table>
 　  <thead>
 　    <th colspan="2"></th>
 　    <th colspan="2"></th>
 　    <th colspan="4"></th>
 　  </thead>
 　  <tbody>
-　    <% @profile_images.zip(@books).each do |user, book| %>
 　    <tr>
        <td><%= user.profile_image %></td>
-       <td><%= name %></td>
+       <td><%= link_to user.name, user_path(user.id) %></td>
        <td><%= book.title %></td>
        <td><%= book.body %></td>
 　    </tr>
-　    <% end %>
-　  </tbody>@
+　  </tbody>
 　</table>
+　<% end %>
+<% end %>
