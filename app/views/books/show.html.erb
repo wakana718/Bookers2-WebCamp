@@ -8,10 +8,6 @@
    <% end %>
 </div>
 
-
-<h1>New book</h1>
- <%= form_with model:@book, local:true do |f| %>
-
 <!-- エラーメッセージの表示（バリデーション）-->
 <% if @book.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
@@ -24,6 +20,9 @@
   </div>
 <% end %>
 
+
+<h1>New book</h1>
+ <%= form_with model:@book, local:true do |f| %>
    <h4>Title</h4>
    <%= f.text_field :title %>
 
@@ -35,42 +34,13 @@
  <% end %>
 
 <h1>Book detail</h1>
-<% @profile_images.zip(@books).each do |user, book| %>
- <% if @user.id == current_user.id %>
-　<table>
-　  <thead>
-　    <th colspan="1"></th>
-　    <th colspan="1"></th>
-　    <th colspan="1"></th>
-　    <th colspan="1"></th>
-　    <th colspan="1"></th>
-　  </thead>
-　  <tbody>
-　    <tr>
-       <td><%= user.profile_image %></td>
-       <td><%= link_to user.name, user_path(user.id) %></td>
-       <td><%= book.title %></td>
-       <td><%= book.body %></td>
-       <td><%= link_to "Edit", edit_user_book %></td>
-       <td><%= link_to "Destroy", user_book_index, method: :delete %></td>
-　    </tr>
-　  </tbody>
-　</table>
-　<% else %>
-　 <table>
-　  <thead>
-　    <th colspan="2"></th>
-　    <th colspan="2"></th>
-　    <th colspan="4"></th>
-　  </thead>
-　  <tbody>
-　    <tr>
-       <td><%= user.profile_image %></td>
-       <td><%= link_to user.name, user_path(user.id) %></td>
-       <td><%= book.title %></td>
-       <td><%= book.body %></td>
-　    </tr>
-　  </tbody>
-　</table>
-　<% end %>
-<% end %>
+
+
+
+
+
+       <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+       <td><%= link_to @user.name, user_path(@user.id) %></td>
+       <td><%= @book_show.title %></td>
+       <td><%= @book_show.body %></td>
+
