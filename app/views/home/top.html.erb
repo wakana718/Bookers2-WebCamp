@@ -1,10 +1,38 @@
-<h1>welcome to bookers !!</h1>
-<p>in bookers,</br>
+<div class="container">
+
+  <div class="row">
+      <div class="col-lg-10" >
+
+<h1><small>welcome to</small>
+<span class="glyphicon glyphicon-book" aria-hidden="true"></span> Bookers !!</h1>
+
+</br>
+
+<p><span class="glyphicon glyphicon-book" aria-hidden="true"></span>in bookers,</br>
 you can share and exchange your opinions , inpressions , and emotions
 </br>
 about various books!
 </p>
+</div>
+</div>
 
-<%= link_to "Log in", new_user_session_path %>
-</br>
+<div class="row center-block">
+
+ <button class="btn btn-primary center-block btn-block" >
+  <span class= "text-color: white;">
+  <%= link_to "Log in", new_user_session_path %>
+  </span>
+  </button>
+</div>
+
+
+<div class="row center-block">
+<button class="btn btn-success center-block btn-block">
 <%= link_to "Sign Up", new_user_registration_path  %>
+</button>
+</div>
+
+
+</div>
+
+

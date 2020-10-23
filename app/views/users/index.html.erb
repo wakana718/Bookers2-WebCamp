@@ -1,3 +1,6 @@
+<div class="container">
+  <div class="row-inline">
+      <div class="col-lg-3" >
 <h1>User info</h1>
 <div class="profile-container">
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
@@ -32,9 +35,14 @@
    <%= f.submit 'Create Book' %>
 
  <% end %>
+ </div>
+ </div>
 
+
+ <div class="row-inline">
+<div class="col-lg-9">
 <h1>Users</h1>
-　<table>
+　<table class="table table-hover">
 　  <thead>
 　    <th>image</th>
 　    <th>name</th>
@@ -51,3 +59,5 @@
 　    <% end %>
 　  </tbody>
 　</table>
+　</div>
+</div>

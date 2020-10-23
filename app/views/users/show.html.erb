@@ -1,10 +1,17 @@
+<div class="container">
+  <div class="row-inline">
+      <div class="col-lg-3" >
 <h1>User info</h1>
 <div class="profile-container">
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
     <h3><%= @user.name %></h3>
     <h3><%= @user.introduction %></h3>
    <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    <p>
+       <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+        <%= link_to "プロフィール編集", edit_user_path(@user) %>
+        </span>
+        </p>
    <% end %>
 </div>
 
@@ -28,14 +35,15 @@
 
    <h4>Opinion</h4>
    <%= f.text_area :body %>
-
    <%= f.submit 'Create Book' %>
-
  <% end %>
+ </div>
+ </div>
 
-
+<div class="row-inline">
+<div class="col-lg-9">
 <h1>Books</h1>
-   <table>
+   <table class="table hover">
   <thead>
       <th>Title</th>
       <th>Opinion</th>
@@ -50,3 +58,7 @@
     <% end %>
   </tbody>
 </table>
+ </div>
+</div>
+</div>
+</div>

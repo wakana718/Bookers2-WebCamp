@@ -20,6 +20,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @profile_images = User.all
     @books = Book.all
+
   end
 
   def destroy

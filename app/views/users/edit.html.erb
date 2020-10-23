@@ -1,20 +1,19 @@
 <h1>User info</h1>
-
-<%= form_with model:@user, local:true do |f| %>
-
+<!--バリデーション-->
   <% if @user.errors.any? %>
     <%= @user.errors.count %>件のエラーが発生しました
     <% @user.errors.full_messages.each do |message| %>
       <%= message %>
+      <% end %>
     <% end %>
 
-  <% end %>
 
-
-  <%= f.attachment_field :profile_image %>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <%= f.attachment_field :profile_image %>
+<%= form_with model:@user, local:true do |f| %>
   <%= f.text_field :name, "Name" %>
-  <%= f.text_area :introduction "Introduction" %>
+
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+  <%= f.attachment_field :profile_image, "Image" %>
+
+  <%= f.text_area :introduction, "Introduction" %>
   <%= f.submit "Update User", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
 <% end %>
