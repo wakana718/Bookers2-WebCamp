@@ -1,7 +1,6 @@
 <h1>User info</h1>
 <div class="profile-container">
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  <% if @user.id == current_user.id %>
     <h3><%= @user.name %></h3>
     <h3><%= @user.introduction %></h3>
    <% if @user.id == current_user.id %>
@@ -43,12 +42,16 @@
 　    <th>Opinion</th>
 　  </thead>
 　  <tbody>
-　    <% @profile_images.zip(@books).each do |user, book| %>
 　    <tr>
-       <td><%= user.profile_image %></td>
+　     <td>
+　       <% @profile_images.each do |post_image| %>
+　       <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+         <% end %>
+       </td>
+     <% @books.each do |book| %>
        <td><%= book.title %></td>
        <td><%= book.body %></td>
+      <% end %>
 　    </tr>
-　    <% end %>
-　  </tbody>@
+　  </tbody>
 　</table>

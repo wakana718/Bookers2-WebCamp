@@ -16,9 +16,9 @@ class BooksController < ApplicationController
   end
 
   def index
-    @user = User.find(params[:id])
+    @user = current_user
     @book = Book.new
-    @profile_images = ProfileImage.all
+    @profile_images = User.all
     @books = Book.all
   end
 

@@ -35,12 +35,9 @@
 
 <h1>Book detail</h1>
 
+   <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+   <td><%= link_to @user.name, user_path(@user.id) %></td>
+   <td><%= @book_show.title %></td>
+   <td><%= @book_show.body %></td>
 
-
-
-
-       <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-       <td><%= link_to @user.name, user_path(@user.id) %></td>
-       <td><%= @book_show.title %></td>
-       <td><%= @book_show.body %></td>
-
+<!--edit destroy必要-->
