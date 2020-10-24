@@ -1,9 +1,22 @@
+<div class="container">
+  <div class="row">
+      <div class="col-lg-10" >
+
 <h1>Editing Book</h1>
 <%= form_with model:@book, local:true do |f| %>
- <%= f.text_field :Title %>
- <%= f.text_field :Opinion %>
- <%= f.submit "Update Book", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+<h4>Title</h4>
+ <%= f.text_field :title %>
+ <h4>Opinion</h4>
+ <%= f.text_area :body %>
+ </br>
+ </br>
+ <%= f.submit "Update Book", class:"btn btn-default" %>
 <% end %>
+</br>
 
-<%= link_to "Show", user_book_path(book.id) %>
-<%= link_to "Back", user_book_index_path %>
+<%= link_to "Show", user_path(current_user) %>
+<%= link_to "Back", books_path %>
+
+</div>
+</div>
+</div>

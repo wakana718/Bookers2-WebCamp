@@ -15,7 +15,7 @@
 
           <% if @user.id == current_user.id %>
 
-           <p>
+          <p>
        <span class="glyphicon glyphicon-wrench" aria-hidden="true">
         <%= link_to "プロフィール編集", edit_user_path(@user) %>
         </span>
@@ -57,12 +57,19 @@
  <h1>Book detail</h1>
   <table class="table table-hover">
   <tr>
-   <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-   <td><%= link_to @user.name, user_path(@user.id) %></td>
+   <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+   <%= link_to @user.name, user_path(@user.id) %></td>
    <td><%= @book_show.title %></td>
    <td><%= @book_show.body %></td>
+
+   <td><button class="btn btn-success">
+   <%= link_to "Edit", edit_book_path(@user.id) %>
+   </button></td>
+
+   <td><button class="btn btn-danger">
+   <%= link_to "Destroy", book_path, method: :delete %>
+   </button></td>
   </tr>
-<!--edit destroy必要-->
  </table>
  </div>
 </div>
