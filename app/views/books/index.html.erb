@@ -3,12 +3,15 @@
       <div class="col-lg-3" >
 <h1>User info</h1>
 <div class="profile-container">
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-    <h3><%= @user.name %></h3>
-    <h3><%= @user.introduction %></h3>
-   <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-   <% end %>
+    <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+
+     <h4>name</h4>
+        <p><%= current_user.name %></p>
+        <h4>introduction</h4>
+        <p><%= current_user.introduction %></p>
+
+    <p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
+
 </div>
 
 
@@ -43,27 +46,27 @@
 <div class="row-inline">
 <div class="col-lg-9">
 <h1>Books</h1>
+
 　<table class="table table-hover">
 　  <thead>
 　    <th colspan="3"></th>
 　    <th>Title</th>
 　    <th>Opinion</th>
 　  </thead>
+
 　  <tbody>
-　    <tr>
-　     <td>
-　       <% @profile_images.each do |post_image| %>
-
-　       <%= attachment_image_tag @user_index, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-
-         <% end %>
-       </td>
-     <% @books.each do |book| %>
-       <td><%= book.title %></td>
-       <td><%= book.body %></td>
-      <% end %>
-　    </tr>
-　  </tbody>
+				<% @books.each do |book| %>
+				<tr>
+					<td>
+						<%= link_to user_path(book.user) do %>
+						<%= attachment_image_tag(book.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+						<% end %>
+					</td>
+					<td><%= link_to book.title, book, class: "book_#{book.id}" %></td>
+					<td><%= book.body %></td>
+				</tr>
+				<% end %>
+			</tbody>
 　</table>
 　</div>
 </div>
