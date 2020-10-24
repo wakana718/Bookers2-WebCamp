@@ -67,7 +67,7 @@
    </button></td>
 
    <td><button class="btn btn-danger">
-   <%= link_to "Destroy", book_path, method: :delete %>
+   <%= link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に消しますか？"} %>
    </button></td>
   </tr>
  </table>

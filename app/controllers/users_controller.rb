@@ -7,20 +7,25 @@ class UsersController < ApplicationController
     @books = @user.books
   end
 
+
   def edit
     @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(current_user)
+   if
+     @user.update(user_params)
+     redirect_to user_path(current_user), notice: "You have updated successfully."
+   else
+     flash.now[:alert] = "You failed to update. Please try again."
+     render :new
+   end
   end
 
   def index
     @users = User.all
     @book = Book.new
-
   end
 
   private
