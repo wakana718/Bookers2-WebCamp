@@ -1,37 +1,32 @@
-
-
 <div class="container">
-  <div class="row">
-      <div class="col-xs-3" >
+ <div class="row">
 
-     <%= render 'users/list', user: @user %>
+  <div class="col-xs-3">
+   <%= render 'users/list', user: @user %>
+   <%= render 'books/list2', book: @book %>
+  </div>
 
-     <%= render 'books/list2', book: @book %>
+  <div class="col-xs-9">
+    <h1>Book detail</h1>
+      <table class="table table-hover">
+       <tr>
+        <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+            <%= link_to @user.name, user_path(@user.id) %>
+        </td>
+        <td><%= @book_show.title %></td>
+        <td><%= @book_show.body %></td>
+         <% if current_user == @book_show.user %>
+        <td>
+         <button class="btn btn-success"><%= link_to "Edit", edit_book_path(@book_show) %></button>
+        </td>
+        <td>
+         <button class="btn btn-danger"></button><%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: "本当に消しますか？"} %>
+         </button>
+        </td>
+         <% end %>
+       </tr>
+      </table>
+   </div>
 
-
-<div class="row">
-<div class="col-xs-3">
- <h1>Book detail</h1>
-  <table class="table table-hover">
-  <tr>
-   <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-   <%= link_to @user.name, user_path(@user.id) %></td>
-   <td><%= @book_show.title %></td>
-   <td><%= @book_show.body %></td>
-
-
-  <% if current_user == @book_show.user %>
-
-   <td><button class="btn btn-success">
-   <%= link_to "Edit", edit_book_path(@book_show) %>
-   </button></td>
-
-   <td><button class="btn btn-danger">
-   <%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: "本当に消しますか？"} %>
-   </button></td>
-   <% end %>
-  </tr>
- </table>
  </div>
-</div>
 </div>

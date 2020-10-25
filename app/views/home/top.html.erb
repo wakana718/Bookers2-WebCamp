@@ -1,38 +1,29 @@
 <div class="container">
 
   <div class="row">
-      <div class="col-xs-3" >
+    <div class="col-xs-9">
+    <h1>welcome to<span class="glyphicon glyphicon-book" aria-hidden="true"></span> Bookers !!</h1>
+     </br>
+     <p>In<span class="glyphicon glyphicon-book" aria-hidden="true"></span><strong>Bookers,</strong>
+     </br>
+     you can share and exchange your opinions , inpressions , and emotions
+     </br>
+     about various books!
+     </p>
+   </div>
+ </div>
 
-<h1>welcome to
-<span class="glyphicon glyphicon-book" aria-hidden="true"></span> Bookers !!</h1>
+ <div class="row">
+  <div class="col-xs-3">
+  <%= link_to "Log in", new_user_session_path, class:"btn btn-primary btn-block" %>
+  </div>
+ </div>
 
-</br>
-
-<p>In<span class="glyphicon glyphicon-book" aria-hidden="true"></span><strong>Bookers,</strong>
-</br>
-you can share and exchange your opinions , inpressions , and emotions
-</br>
-about various books!
-</p>
-</div>
-</div>
-
-<div class="row center-block">
-
- <button class="btn btn-primary center-block btn-block">
-  <span class= "text-color: white;">
-  <%= link_to "Log in", new_user_session_path %>
-  </span>
-  </button>
-</div>
-
-
-<div class="row center-block">
-<button class="btn btn-success center-block btn-block">
-<%= link_to "Sign Up", new_user_registration_path  %>
-</button>
-</div>
-
+ <div class="row">
+  <div class="col-xs-3">
+  <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-success btn-block" %>
+  </div>
+ </div>
 
 </div>
 
