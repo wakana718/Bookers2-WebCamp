@@ -58,7 +58,7 @@
   </thead>
 
   <tbody>
-    <% @book.each do |book| %>
+    <% @books.each do |book| %>
       <tr>
         <td><%= link_to book_path(book) do %>
             <%= book.title %>

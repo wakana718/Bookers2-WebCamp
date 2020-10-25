@@ -11,7 +11,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-       redirect_to book_path(@book.user_id), notice: "You have created successfully."
+       redirect_to book_path(@book), notice: "You have created successfully."
     else
        flash.now[:alert] = "You failed to create. Please try again."
        render :new
@@ -24,9 +24,9 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = book.find(params[:id])
+    @book = Book.find(params[:id])
     @book.destroy
-    redirect_to book_path, notice: "successfully destroyed."
+    redirect_to books_path, notice: "successfully destroyed."
   end
 
  def edit
@@ -50,7 +50,7 @@ class BooksController < ApplicationController
   def correct_user
      book = Book.find(params[:id])
 
-     if current_user.id = book.user.id
+     if current_user.id != book.user_id
        redirect_to root_path
      end
   end
