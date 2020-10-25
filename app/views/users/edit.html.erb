@@ -1,12 +1,12 @@
 
 <div class="container">
   <div class="row">
-     <div class="col-lg-10">
+     <div class="col-xs-3">
 
 <h1>User info</h1>
 <!--バリデーション-->
   <% if @user.errors.any? %>
-    <%= @user.errors.count %>件のエラーが発生しました
+    <%= @user.errors.count %>error
     <% @user.errors.full_messages.each do |message| %>
       <%= message %>
       <% end %>

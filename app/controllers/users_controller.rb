@@ -19,12 +19,12 @@ class UsersController < ApplicationController
      @user.update(user_params)
      redirect_to user_path(current_user), notice: "You have updated successfully."
    else
-     flash.now[:alert] = "You failed to update. Please try again."
-     render :new
+     render :edit
    end
   end
 
   def index
+    @user = current_user
     @users = User.all
     @book = Book.new
   end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def correct_user
     user = User.find(params[:id])
     if current_user != user
-      redirect_to root_path
+      redirect_to user_path(current_user)
     end
   end
 
