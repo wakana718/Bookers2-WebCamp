@@ -69,15 +69,13 @@
  </header>
 
 
- <div class="container">
+
+  </br>
+  </br>
+  </br>
+  <div class="container">
    <div class="row">
-     <!-- フラッシュメッセージ -->
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, value, class: "#{key}") %>
-  <% end %>
-  </br>
-  </br>
-  </br>
+   <p id="notice"><%= flash[:notice] %></p>
     <%= yield %>
   </div>
  </div>
