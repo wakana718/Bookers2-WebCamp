@@ -20,7 +20,7 @@
          <button class="btn btn-success"><%= link_to "Edit", edit_book_path(@book_show) %></button>
         </td>
         <td>
-         <button class="btn btn-danger"></button><%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: "本当に消しますか？"} %>
+         <button class="btn btn-danger"><%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: "本当に消しますか？"} %>
          </button>
         </td>
          <% end %>

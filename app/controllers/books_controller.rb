@@ -16,9 +16,8 @@ class BooksController < ApplicationController
        redirect_to book_path(@book), notice: "You have created successfully."
     else
        @books = Book.all
-       flash.now[:alert] = "You failed to create. Please try again."
+       @user = current_user
        render :index
-
     end
   end
 
@@ -55,7 +54,7 @@ class BooksController < ApplicationController
      book = Book.find(params[:id])
 
      if current_user.id != book.user_id
-       redirect_to root_url
+       redirect_to books_url
      end
   end
 

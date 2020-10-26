@@ -7,7 +7,7 @@
 <% if @book.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
     <ul>
- <%= @book.errors.count %>error
+     <%= @book.errors.count %>error
       <% @book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
@@ -16,18 +16,23 @@
 <% end %>
 
 <%= form_with model:@book, local:true do |f| %>
+
 <h4>Title</h4>
  <%= f.text_field :title %>
+
  <h4>Opinion</h4>
+ <div class="form-group">
  <%= f.text_area :body %>
- </br>
- </br>
- <%= f.submit "Update Book", class:"btn btn-primary" %>
+ </div>
+
+ <%= f.submit "Update Book", class:"btn btn-primary btn-block" %>
 <% end %>
 </br>
 
-<%= link_to "Show", book_path %>
+<div class="col-md-3">
+<%= link_to "Show", book_path %> |
 <%= link_to "Back", books_path %>
+</div>
 
   </div>
  </div>
