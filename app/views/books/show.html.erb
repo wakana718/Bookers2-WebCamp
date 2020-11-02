@@ -15,6 +15,32 @@
         </td>
         <td><%= @book_show.title %></td>
         <td><%= @book_show.body %></td>
+
+        <!--いいね機能-->
+        <td>
+		   <% if @book.favorited_by?(current_user) %>
+
+         <%= link_to favorites_path(@book_id), method: :delete do %>
+          <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" ></i>
+         <% end %>
+           <%= @book.favorites.count %>
+
+
+      <% else %>
+
+         <%= link_to favorites_path(@book_id), method: :post do %>
+          <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
+         <% end %>
+           <%= @book.favorites.count %>
+
+
+      <% end %>
+		 </td>
+        <!--いいね機能-->
+
+
+
+
          <% if current_user == @book_show.user %>
         <td>
          <button class="btn btn-success"><%= link_to "Edit", edit_book_path(@book_show) %></button>
