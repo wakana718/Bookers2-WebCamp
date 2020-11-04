@@ -23,6 +23,10 @@
             <% end %>
         </td>
         <td><%= book.body %></td>
+
+        <!--コメント数の表示-->
+		    <td><div class="comment-count">コメント数：<%= book.book_comments.count %></div></td>
+
       </tr>
     <% end %>
   </tbody>

@@ -10,7 +10,7 @@
     <h1>Book detail</h1>
       <table class="table table-hover">
        <tr>
-        <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        <td><%= attachment_image_tag @user, :profile_image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg" %>
             <%= link_to @user.name, user_path(@user.id) %>
         </td>
         <td><%= @book_show.title %></td>
@@ -18,41 +18,64 @@
 
         <!--いいね機能-->
         <td>
-		   <% if @book.favorited_by?(current_user) %>
-
-         <%= link_to favorites_path(@book_id), method: :delete do %>
-          <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" ></i>
-         <% end %>
-           <%= @book.favorites.count %>
-
-
-      <% else %>
-
-         <%= link_to favorites_path(@book_id), method: :post do %>
+		       <% if @book_show.favorited_by?(current_user) %>
+          <%= link_to book_favorites_path(@book_show), method: :delete do %>
+          <i class="glyphicon glyphicon-heart" aria-hidden="true"  ></i>
+          <% end %>
+          <%= @book_show.favorites.count %>
+         <% else %>
+          <%= link_to book_favorites_path(@book_show), method: :post do %>
           <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
-         <% end %>
-           <%= @book.favorites.count %>
+          <% end %>
+           <%= @book_show.favorites.count %>
+          <% end %>
+		       </td>
 
-
-      <% end %>
-		 </td>
-        <!--いいね機能-->
-
-
-
+        <!--コメント数-->
+　　　　<td>
+　　　　 <div class="comment-count">コメント数：<%= @book_show.book_comments.count %></div>
+　　　　</td>
 
          <% if current_user == @book_show.user %>
-        <td>
-         <button class="btn btn-success"><%= link_to "Edit", edit_book_path(@book_show) %></button>
-        </td>
-        <td>
-         <button class="btn btn-danger"><%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: "本当に消しますか？"} %>
-         </button>
-        </td>
+        <td><button class="btn btn-success"><%= link_to "Edit", edit_book_path(@book_show) %></button></td>
+        <td><button class="btn btn-danger"><%= link_to "Destroy", book_path(@book_show.id), method: :delete, data: {confirm: "本当に消しますか？"} %></button></td>
          <% end %>
        </tr>
       </table>
+
+       <!--コメント文の表示-->
+      <ul>
+       <% @book_show.book_comments.each do |book_comment| %>
+        <li class="comment" style="list-style: none;">
+         <div class="avatar"><%= attachment_image_tag(book_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg") %></div>
+         <div class="comment-author"><%= book_comment.user.name %></div>
+         <div class="comment-text"><%= book_comment.comment %></div>
+        </li>
+
+
+       <!--コメントの削除ボタン-->
+        <li class="button" style="list-style: none;">
+         <% if current_user == book_comment.user %>
+          <div><%= link_to "Destroy", book_book_comment_path(book_comment.id, book_comment.book), method: :delete, class: "btn btn-danger" %></div>
+         <% end %>
+        </li>
+       <% end %>
+      </ul>
+
+
+      <!--コメントフォーム欄-->
+      <%= form_with(model:[@book_show, @book_comment], local: true) do |f| %>
+　　    <div class="row">
+    　　　<div class="col-sm-12">
+      　<%= f.text_area :comment, rows:'5', class: "form-control" %>
+      　 <%= f.submit "送信", class:"btn btn-default pull-right" %>
+　　　<% end %>
+　　　  </div>
+  　　  　</div>
+
+
    </div>
 
  </div>
 </div>
+
