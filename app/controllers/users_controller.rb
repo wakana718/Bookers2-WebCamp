@@ -25,9 +25,18 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-
     @users = User.all
     @book = Book.new
+  end
+
+  def following
+    @user  = User.find(params[:id])
+    render 'show_follow'
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    render 'show_follower'
   end
 
   private

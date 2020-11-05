@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root to: 'home#top'
   get 'home/about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users
+  resources :users do
+   member do
+     get :following, :followers
+    end
+  end
   resources :books do
    resources :book_comments, only: [:create, :destroy]
    resource :favorites, only: [:create, :destroy]
