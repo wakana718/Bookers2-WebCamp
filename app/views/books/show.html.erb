@@ -17,19 +17,7 @@
         <td><%= @book_show.body %></td>
 
         <!--いいね機能-->
-        <td>
-		       <% if @book_show.favorited_by?(current_user) %>
-          <%= link_to book_favorites_path(@book_show), method: :delete do %>
-          <i class="glyphicon glyphicon-heart" aria-hidden="true"  ></i>
-          <% end %>
-          <%= @book_show.favorites.count %>
-         <% else %>
-          <%= link_to book_favorites_path(@book_show), method: :post do %>
-          <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
-          <% end %>
-           <%= @book_show.favorites.count %>
-          <% end %>
-		       </td>
+　      <td class="favorite-btn"><%= render "favorites/favorite-btn", book: @book_show %></td>
 
         <!--コメント数-->
 　　　　<td>
@@ -43,35 +31,9 @@
        </tr>
       </table>
 
-       <!--コメント文の表示-->
-      <ul>
-       <% @book_show.book_comments.each do |book_comment| %>
-        <li class="comment" style="list-style: none;">
-         <div class="avatar"><%= attachment_image_tag(book_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg") %></div>
-         <div class="comment-author"><%= book_comment.user.name %></div>
-         <div class="comment-text"><%= book_comment.comment %></div>
-        </li>
+       <!--コメント文の表示(と削除ボタン)とコメントフォーム欄-->
+      <ul><%= render "book_comments/comment-list", book: @book_show %></ul>
 
-
-       <!--コメントの削除ボタン-->
-        <li class="button" style="list-style: none;">
-         <% if current_user == book_comment.user %>
-          <div><%= link_to "Destroy", book_book_comment_path(book_comment.id, book_comment.book), method: :delete, class: "btn btn-danger" %></div>
-         <% end %>
-        </li>
-       <% end %>
-      </ul>
-
-
-      <!--コメントフォーム欄-->
-      <%= form_with(model:[@book_show, @book_comment], local: true) do |f| %>
-　　    <div class="row">
-    　　　<div class="col-sm-12">
-      　<%= f.text_area :comment, rows:'5', class: "form-control" %>
-      　 <%= f.submit "送信", class:"btn btn-default pull-right" %>
-　　　<% end %>
-　　　  </div>
-  　　  　</div>
 
 
    </div>

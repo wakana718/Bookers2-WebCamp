@@ -1,13 +1,14 @@
 class SearchsController < ApplicationController
+  before_action :authenticate_user!
   def search
     @range = params[:range]
-    search = params[:search]
-    word = params[:word]
+    @search = params[:search]
+    @word = params[:word]
 
     if @range == '1'
-      @user = User.search(search,word)
+      @user = User.search_for(@search,@word)
     else
-      @book = Book.search(search,word)
+      @book = Book.search_for(@search,@word)
     end
   end
 

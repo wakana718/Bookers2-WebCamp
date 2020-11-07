@@ -1,0 +1,28 @@
+ <!--コメント文の表示-->
+      <ul>
+       <% @book.book_comments.each do |book_comment| %>
+        <li class="comment" style="list-style: none;">
+         <div class="avatar"><%= attachment_image_tag(book_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg") %></div>
+         <div class="comment-author"><%= book_comment.user.name %></div>
+         <div class="comment-text"><%= book_comment.comment %></div>
+        </li>
+
+
+       <!--コメントの削除ボタン-->
+        <li class="button" style="list-style: none;">
+         <% if current_user == book_comment.user %>
+          <div><%= link_to "Destroy", book_book_comment_path(book_comment.id, book_comment.book), method: :delete, remote: true, class: "btn btn-danger" %></div>
+         <% end %>
+        </li>
+       <% end %>
+      </ul>
+
+       <!--コメントフォーム欄-->
+      <%= form_with(model:[@book_show, @book_comment], remote: true) do |f| %>
+　　    <div class="row">
+    　　　<div class="col-sm-12">
+      　<%= f.text_area :comment, rows:'5', class: "form-control" %>
+      　 <%= f.submit "送信", class:"btn btn-default pull-right" %>
+　　　<% end %>
+　　　  </div>
+  　　  　</div>

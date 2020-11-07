@@ -25,26 +25,9 @@
 		 <td><%= book.body %></td>
 
 
-　　　<!--いいね機能-->
-		 <td>
-		   <% if book.favorited_by?(current_user) %>
 
-         <%= link_to book_favorites_path(book), method: :delete do %>
-          <i class="glyphicon glyphicon-heart" aria-hidden="true"  ></i>
-         <% end %>
-           <%= book.favorites.count %>
-
-
-      <% else %>
-
-         <%= link_to book_favorites_path(book), method: :post do %>
-          <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
-         <% end %>
-           <%= book.favorites.count %>
-
-
-      <% end %>
-		 </td>
+　 <!--いいね機能-->
+　 <td class="favorite-btn"><%= render "favorites/favorite-btn", book: book %></td>
 
 
 		 <!--コメント数の表示-->
