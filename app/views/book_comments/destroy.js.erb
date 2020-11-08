@@ -1,2 +1,1 @@
-$(".comment-list").html("<%= j(render 'book_comments/comment-list', book_comment: @a) %>");
-$('#comment-<%= @comment.id %>').remove(); 　<!--←フォームの中身をリセットする処理-->
+$("comment-form-_<%= @book_comment.id %>").html("<%= j(render 'book_comments/comment-list', comment: @comment) %>");

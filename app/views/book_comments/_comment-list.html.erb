@@ -1,6 +1,6 @@
  <!--コメント文の表示-->
-      <ul>
-       <% @book.book_comments.each do |book_comment| %>
+      <ul class="comment-form" <%= @book_comment.id %>>
+       <% book.book_comments.each do |book_comment| %>
         <li class="comment" style="list-style: none;">
          <div class="avatar"><%= attachment_image_tag(book_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg") %></div>
          <div class="comment-author"><%= book_comment.user.name %></div>
@@ -18,7 +18,7 @@
       </ul>
 
        <!--コメントフォーム欄-->
-      <%= form_with(model:[@book_show, @book_comment], remote: true) do |f| %>
+       <%= form_with(model:[book, @book_comment], remote: true) do |f| %>
 　　    <div class="row">
     　　　<div class="col-sm-12">
       　<%= f.text_area :comment, rows:'5', class: "form-control" %>

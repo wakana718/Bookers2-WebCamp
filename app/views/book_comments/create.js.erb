@@ -1,1 +1,2 @@
-$(".comment-list").html("<%= j(render 'book_comments/comment-list', book_comment: @book) %>");
+$("#comment-list-_<%= @book.id %>").html("<%= j(render 'book_comments/comment-list', book: @book) %>");
+$('.form-control').val('') 　<!--←フォームの中身をリセットする処理-->

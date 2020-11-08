@@ -17,7 +17,7 @@
         <td><%= @book_show.body %></td>
 
         <!--いいね機能-->
-　      <td class="favorite-btn"><%= render "favorites/favorite-btn", book: @book_show %></td>
+　      <td id="favorite-btn-<%= @book_show.id %>"><%= render "favorites/favorite-btn", book: @book_show %></td>
 
         <!--コメント数-->
 　　　　<td>
@@ -32,7 +32,9 @@
       </table>
 
        <!--コメント文の表示(と削除ボタン)とコメントフォーム欄-->
-      <ul><%= render "book_comments/comment-list", book: @book_show %></ul>
+      <ul id="comment-list-_<%= @book_show.id %>"><%= render "book_comments/comment-list", book: @book_show %></ul>
+
+
 
 
 
