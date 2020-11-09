@@ -20,9 +20,8 @@
 　      <td id="favorite-btn-<%= @book_show.id %>"><%= render "favorites/favorite-btn", book: @book_show %></td>
 
         <!--コメント数-->
-　　　　<td>
-　　　　 <div class="comment-count">コメント数：<%= @book_show.book_comments.count %></div>
-　　　　</td>
+　　　　<td id="comment-count-<%= @book_show.id %>"><%= render "book_comments/comment-count", book: @book_show %></td>
+
 
          <% if current_user == @book_show.user %>
         <td><button class="btn btn-success"><%= link_to "Edit", edit_book_path(@book_show) %></button></td>
@@ -32,7 +31,10 @@
       </table>
 
        <!--コメント文の表示(と削除ボタン)とコメントフォーム欄-->
-      <ul id="comment-list-_<%= @book_show.id %>"><%= render "book_comments/comment-list", book: @book_show %></ul>
+      <ul id="comment-list-<%= @book_show.id %>"><%= render "book_comments/comment-list", book: @book_show %></ul>
+
+
+
 
 
 

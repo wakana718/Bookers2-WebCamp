@@ -1,2 +1,3 @@
-$("#comment-list-_<%= @book.id %>").html("<%= j(render 'book_comments/comment-list', book: @book) %>");
+$("#comment-list-<%= @book.id %>").html("<%= j(render 'book_comments/comment-list', book: @book) %>");
+$("#comment-count-<%= @book.id %>").html("<%= j(render 'book_comments/comment-count', book: @book) %>");
 $('.form-control').val('') 　<!--←フォームの中身をリセットする処理-->
